@@ -21,7 +21,8 @@ function endian(hex) {
 
 app.post('/claim', function (req, res) {
     const PRIVATE_KEY = process.env.PRIVATE_KEY
-    const ENDPOINT = process.env.ENDPOINT
+    const API_URL_INNER = process.env.API_URL_INNER
+    const API_URL_OUTER = process.env.API_URL_OUTER
     const account = Account.createFromPrivateKey(PRIVATE_KEY, NetworkType.MIJIN_TEST)
     const recipient = nem2lib.convert.uint8ToHex(nem2lib.address.stringToAddress(Address.createFromRawAddress(req.body.address).plain()))
     const mosaicId = process.env.MOSAIC_ID
@@ -54,7 +55,7 @@ app.post('/claim', function (req, res) {
         sha3_256.create().update(Buffer.from(hashInputPayload, 'hex')).hex().toUpperCase()
     
     request({
-        url: `${ENDPOINT}/transaction`,
+        url: `${API_URL_INNER}/transaction`,
         method: 'PUT',
         headers: {
             'Content-Type':'application/json'
@@ -63,7 +64,7 @@ app.post('/claim', function (req, res) {
     }, (error, response, body) => {
         console.log(body)
     })
-    res.send(`<a href="${ENDPOINT}/transaction/${signedTxHash}/status">${signedTxHash}</a>`)
+    res.send(`<a href="${API_URL_OUTER}/transaction/${signedTxHash}/status">${signedTxHash}</a>`)
   })
 
   
