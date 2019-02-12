@@ -1,18 +1,17 @@
 {
   "name": "nem2-tiny-faucet",
-  "version": "1.0.0",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js",
-    "dev": "node -r dotenv/config app.js"
-  },
-  "keywords": [],
+  "version": "0.0.1",
   "author": "planethouki",
-  "license": "MIT",
-  "description": "",
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "node -r dotenv/config ./bin/www"
+  },
   "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
     "dotenv": "^6.2.0",
-    "express": "^4.16.4",
+    "express": "~4.16.0",
+    "morgan": "~1.9.0",
     "nem2-sdk": "^0.10.1"
   }
 }
