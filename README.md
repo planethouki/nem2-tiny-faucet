@@ -1,5 +1,7 @@
 # nem2-tiny-faucet
 
+Alpaca, Bison, Cow compatible
+
 
 ## env
 
@@ -27,3 +29,15 @@ AMOUNT=00000000000F4240
     ports:
     - '4000:4300'
 ```
+
+## About Mosaic Id
+
+### Alpaca and Bison
+
+```
+nem:xem = D525AD41D95FCF29
+```
+
+### Cow
+
+You might define in `config-network.properties`.
