@@ -5,9 +5,23 @@
     <title>tiny faucet</title>
 </head>
 <body>
-<form method="post" action="claim">
-    <input type="text" name="address" style="width:25rem;">
+<form name="claim">
+    <input type="text" name="address" style="width:25rem;" required pattern="^[2-7A-Za-z-]+$" placeholder="Your Address">
     <input type="submit" value="Get">
+    <div id="result"></div>
 </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$("form[name=claim]").submit(function(event) {
+    event.preventDefault();
+    var isValid = document.forms.claim.checkValidity()
+    if (isValid) {
+        var address = document.forms.claim.address.value;
+        $("#result").load("claim", {address: address}, function(responseText, textStatus, jqXHR) {
+            console.log(textStatus)
+        });
+    }
+});
+</script>
 </body>
 </html>

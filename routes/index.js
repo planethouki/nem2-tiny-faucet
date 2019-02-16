@@ -56,7 +56,7 @@ router.post('/claim', function (req, res) {
   }, (error, response, body) => {
     console.log(body)
   });
-  res.send(`<a href="${API_URL_OUTER}/transaction/${signedTxHash}/status">${signedTxHash}</a>`)
+  res.send(`<a href="${API_URL_OUTER}/transaction/${signedTxHash}/status" target="_blank">${signedTxHash}</a>`)
 });
 
 
