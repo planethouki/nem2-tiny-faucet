@@ -25,7 +25,7 @@ router.post('/claim', function (req, res) {
       "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" +
       account.publicKey +
       "03905441" +
-      maxfee +
+      endian(maxfee) +
       endian((new Id(Deadline.create().toDTO())).toHex().toUpperCase()) +
       recipient +
       "01000100" +
