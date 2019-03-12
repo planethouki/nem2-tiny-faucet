@@ -17,13 +17,15 @@ router.post('/claim', function (req, res) {
   const API_URL_OUTER = process.env.API_URL_OUTER;
   const account = Account.createFromPrivateKey(PRIVATE_KEY, NetworkType.MIJIN_TEST);
   const recipient = nem2lib.convert.uint8ToHex(nem2lib.address.stringToAddress(Address.createFromRawAddress(req.body.address).plain()));
-  const mosaicId = process.env.MOSAIC_ID;
-  const amount = process.env.AMOUNT;
+  const mosaicId = process.env.MOSAIC_ID || "D525AD41D95FCF29";
+  const amount = process.env.AMOUNT || "00000000000F4240";
+  const maxfee = process.env.MAXFEE || "0000000000000000";
   const txPayload =
       "A5000000" +
       "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" +
       account.publicKey +
-      "039054410000000000000000" +
+      "03905441" +
+      maxfee +
       endian((new Id(Deadline.create().toDTO())).toHex().toUpperCase()) +
       recipient +
       "01000100" +
